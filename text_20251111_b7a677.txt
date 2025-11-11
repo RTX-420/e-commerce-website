@@ -1,0 +1,50 @@
+E-COMMERCE WEBSITE PROJECT
+==========================
+
+Project Description:
+A complete e-commerce website built using Java Servlets, JSP, JDBC, and MySQL.
+
+Features:
+- User Registration and Login
+- Product Catalog
+- Shopping Cart
+- User Authentication
+- Responsive Design
+
+Technologies Used:
+- Java Servlets
+- JSP (Java Server Pages)
+- JDBC (Java Database Connectivity)
+- MySQL Database
+- HTML/CSS/JavaScript
+- Tomcat Server
+
+Setup Instructions:
+
+1. Database Setup:
+   - Install MySQL
+   - Create database: ecommerce_db
+   - Run the SQL script from Database/ecommerce_db.sql
+
+2. NetBeans Setup:
+   - Create new Web Application project
+   - Copy all files to their respective directories
+   - Add MySQL JDBC driver to project libraries
+   - Configure database connection in DatabaseConnection.java
+
+3. Configuration:
+   - Update database credentials in DatabaseConnection.java
+   - Deploy on Tomcat server
+   - Access application at: http://localhost:8080/ECommerceWebsite
+
+Default Login Credentials:
+- Admin: username: admin, password: admin123
+- Customer: username: john_doe, password: password123
+
+Project Structure:
+- src/ - Java source files
+- WebContent/ - JSP, CSS, and web resources
+- Database/ - SQL scripts
+- lib/ - External libraries
+
+Note: Make sure to add MySQL Connector/J to your project classpath.

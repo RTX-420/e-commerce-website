@@ -1,0 +1,70 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.ecommerce.model.Product" %>
+<%@ page import="java.util.List" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Products - E-Commerce</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>E-Commerce Store</h1>
+            <nav>
+                <a href="index.jsp">Home</a>
+                <a href="products">Products</a>
+                <% if (session.getAttribute("user") != null) { %>
+                    <a href="logout.jsp">Logout</a>
+                    <span>Welcome, <%= session.getAttribute("username") %></span>
+                <% } else { %>
+                    <a href="login.jsp">Login</a>
+                    <a href="register.jsp">Register</a>
+                <% } %>
+            </nav>
+        </header>
+        
+        <main>
+            <h2>Our Products</h2>
+            
+            <div class="products-grid">
+                <%
+                    List<Product> products = (List<Product>) request.getAttribute("products");
+                    if (products != null && !products.isEmpty()) {
+                        for (Product product : products) {
+                %>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="images/<%= product.getImageUrl() != null ? product.getImageUrl() : "default.jpg" %>" 
+                                 alt="<%= product.getProductName() %>">
+                        </div>
+                        <div class="product-info">
+                            <h3><%= product.getProductName() %></h3>
+                            <p class="product-description"><%= product.getDescription() %></p>
+                            <p class="product-category"><%= product.getCategoryName() %></p>
+                            <p class="product-price">$<%= String.format("%.2f", product.getPrice()) %></p>
+                            <p class="stock">In Stock: <%= product.getStockQuantity() %></p>
+                            
+                            <% if (session.getAttribute("user") != null) { %>
+                                <form action="cart" method="post" class="add-to-cart-form">
+                                    <input type="hidden" name="action" value="add">
+                                    <input type="hidden" name="productId" value="<%= product.getProductId() %>">
+                                    <input type="number" name="quantity" value="1" min="1" max="<%= product.getStockQuantity() %>">
+                                    <button type="submit" class="btn">Add to Cart</button>
+                                </form>
+                            <% } else { %>
+                                <p><a href="login.jsp">Login to purchase</a></p>
+                            <% } %>
+                        </div>
+                    </div>
+                <%
+                        }
+                    } else {
+                %>
+                    <p>No products available.</p>
+                <% } %>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

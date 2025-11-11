@@ -1,0 +1,53 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>E-Commerce Website</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to Our E-Commerce Store</h1>
+            <nav>
+                <a href="index.jsp">Home</a>
+                <a href="products">Products</a>
+                <% if (session.getAttribute("user") != null) { %>
+                    <a href="logout.jsp">Logout</a>
+                    <span>Welcome, <%= session.getAttribute("username") %></span>
+                <% } else { %>
+                    <a href="login.jsp">Login</a>
+                    <a href="register.jsp">Register</a>
+                <% } %>
+            </nav>
+        </header>
+        
+        <main>
+            <section class="hero">
+                <h2>Best Products at Amazing Prices</h2>
+                <p>Discover our wide range of products</p>
+                <a href="products" class="btn">Shop Now</a>
+            </section>
+            
+            <section class="features">
+                <div class="feature">
+                    <h3>Free Shipping</h3>
+                    <p>On orders over $50</p>
+                </div>
+                <div class="feature">
+                    <h3>24/7 Support</h3>
+                    <p>Customer support always available</p>
+                </div>
+                <div class="feature">
+                    <h3>Secure Payment</h3>
+                    <p>100% secure payment processing</p>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2024 E-Commerce Website. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
